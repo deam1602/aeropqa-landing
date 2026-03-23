@@ -30,11 +30,11 @@
 }
 
 .navLinks a:hover {
-  color: var(--accent-orange);
+  color: var(--accent);
 }
 
 .btnQuote {
-  background-color: var(--accent-orange);
+  background-color: var(--accent);
   padding: 8px 16px;
   border-radius: 4px;
 }

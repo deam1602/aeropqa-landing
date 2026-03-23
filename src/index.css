@@ -3,8 +3,8 @@
 :root {
   --primary: #0A192F;
   --primary-light: #112240;
-  --accent: #FF5A1F;
-  --accent-hover: #E04B15;
+  --accent: #E63946;
+  --accent-hover: #D62828;
   --bg-main: #F4F7FB;
   --bg-card: #FFFFFF;
   --text-main: #1E293B;
@@ -17,7 +17,7 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-glow: 0 0 15px rgba(255, 90, 31, 0.4);
+  --shadow-glow: 0 0 15px rgba(230, 57, 70, 0.4);
   --border-color: #E2E8F0;
 
   --transition-fast: 0.2s ease-in-out;
@@ -166,7 +166,7 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255, 90, 31, 0.15);
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
   background-color: white;
 }
 
