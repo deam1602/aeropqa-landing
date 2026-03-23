@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { calculateShipping } from '../utils/pricing';
+import ContactForm from '../components/ContactForm';
 
 const Calculator = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +18,8 @@ const Calculator = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === 'checkbox') {
-      const newExtras = checked 
-        ? [...formData.extras, value] 
+      const newExtras = checked
+        ? [...formData.extras, value]
         : formData.extras.filter(extra => extra !== value);
       setFormData({ ...formData, extras: newExtras });
     } else {
@@ -31,8 +32,7 @@ const Calculator = () => {
     if (!formData.weight || formData.weight <= 0) {
       newErrors.weight = "El peso debe ser mayor a 0";
     }
-    
-    // Optional dimensions, but if one is provided all should be provided and > 0
+
     if (formData.length || formData.width || formData.height) {
       if (!formData.length || formData.length <= 0) newErrors.length = "Requerido si hay dimensiones";
       if (!formData.width || formData.width <= 0) newErrors.width = "Requerido si hay dimensiones";
@@ -59,7 +59,7 @@ const Calculator = () => {
           <h2>Cotizador de Envíos</h2>
           <p>Calcula el costo estimado de tu envío en segundos</p>
         </div>
-        
+
         <div className="calculator-grid">
           <form onSubmit={handleSubmit} className="shipping-form card" noValidate>
             <div className="form-group">
@@ -73,13 +73,13 @@ const Calculator = () => {
 
             <div className="form-group">
               <label>Peso (kg):</label>
-              <input 
-                type="number" 
-                name="weight" 
-                placeholder="Ej. 5" 
+              <input
+                type="number"
+                name="weight"
+                placeholder="Ej. 5"
                 className={errors.weight ? 'error-input' : ''}
-                value={formData.weight} 
-                onChange={e => { handleChange(e); if (errors.weight) setErrors({...errors, weight: ''}); }} 
+                value={formData.weight}
+                onChange={e => { handleChange(e); if (errors.weight) setErrors({ ...errors, weight: '' }); }}
               />
               {errors.weight && <span className="error-text">{errors.weight}</span>}
             </div>
@@ -88,22 +88,22 @@ const Calculator = () => {
               <label>Dimensiones (cm) - Opcional</label>
               <div className="dimensions-grid">
                 <div>
-                  <input type="number" name="length" placeholder="Largo" 
+                  <input type="number" name="length" placeholder="Largo"
                     className={errors.length ? 'error-input' : ''}
-                    onChange={e => { handleChange(e); if (errors.length) setErrors({...errors, length: ''}); }} />
+                    onChange={e => { handleChange(e); if (errors.length) setErrors({ ...errors, length: '' }); }} />
                 </div>
                 <div>
-                  <input type="number" name="width" placeholder="Ancho" 
-                     className={errors.width ? 'error-input' : ''}
-                     onChange={e => { handleChange(e); if (errors.width) setErrors({...errors, width: ''}); }} />
+                  <input type="number" name="width" placeholder="Ancho"
+                    className={errors.width ? 'error-input' : ''}
+                    onChange={e => { handleChange(e); if (errors.width) setErrors({ ...errors, width: '' }); }} />
                 </div>
                 <div>
-                  <input type="number" name="height" placeholder="Alto" 
+                  <input type="number" name="height" placeholder="Alto"
                     className={errors.height ? 'error-input' : ''}
-                    onChange={e => { handleChange(e); if (errors.height) setErrors({...errors, height: ''}); }} />
+                    onChange={e => { handleChange(e); if (errors.height) setErrors({ ...errors, height: '' }); }} />
                 </div>
               </div>
-              {(errors.length || errors.width || errors.height) && 
+              {(errors.length || errors.width || errors.height) &&
                 <span className="error-text">Al ingresar una dimensión, debe completar todas (mayores a 0).</span>}
             </div>
 
@@ -111,11 +111,11 @@ const Calculator = () => {
               <label>Nivel de Servicio:</label>
               <div className="radio-group">
                 <label className="radio-label">
-                  <input type="radio" name="serviceLevel" value="standard" checked={formData.serviceLevel === 'standard'} onChange={handleChange} /> 
+                  <input type="radio" name="serviceLevel" value="standard" checked={formData.serviceLevel === 'standard'} onChange={handleChange} />
                   <span>Estándar</span>
                 </label>
                 <label className="radio-label">
-                  <input type="radio" name="serviceLevel" value="express" checked={formData.serviceLevel === 'express'} onChange={handleChange} /> 
+                  <input type="radio" name="serviceLevel" value="express" checked={formData.serviceLevel === 'express'} onChange={handleChange} />
                   <span>Exprés</span>
                 </label>
               </div>
@@ -125,11 +125,11 @@ const Calculator = () => {
               <label>Servicios Extras:</label>
               <div className="checkbox-group">
                 <label className="checkbox-label">
-                  <input type="checkbox" value="pickup" onChange={handleChange} /> 
+                  <input type="checkbox" value="pickup" onChange={handleChange} />
                   <span>Recolección a domicilio</span>
                 </label>
                 <label className="checkbox-label">
-                  <input type="checkbox" value="insurance" onChange={handleChange} /> 
+                  <input type="checkbox" value="insurance" onChange={handleChange} />
                   <span>Seguro contra pérdida</span>
                 </label>
               </div>
@@ -145,18 +145,18 @@ const Calculator = () => {
             {result ? (
               <div className="results-card card fade-in">
                 <h3>Resumen de Cotización</h3>
-                
+
                 <div className="price-tag">
                   <span className="currency">Q</span>
                   <span className="amount">{result.total}</span>
                 </div>
-                
+
                 <div className="delivery-time">
                   <i className="icon-clock"></i> Tiempo estimado: <strong>{result.timeEstimate}</strong>
                 </div>
-                
+
                 <hr className="divider" />
-                
+
                 <div className="breakdown">
                   <h4>Desglose de costos</h4>
                   <ul className="breakdown-list">
@@ -167,7 +167,7 @@ const Calculator = () => {
                     <li>
                       <div className="weight-info">
                         <span>Costo por Peso ({result.breakdown.chargeableWeight} kg)</span>
-                        {result.breakdown.appliedVolumetric && 
+                        {result.breakdown.appliedVolumetric &&
                           <span className="badge-volumetric">Aplicó peso volumétrico</span>
                         }
                       </div>
@@ -188,7 +188,7 @@ const Calculator = () => {
                   </ul>
                 </div>
                 <button className="btn-secondary" style={{ width: '100%', marginTop: '1.5rem' }}>
-                    Solicitar Envío
+                  Solicitar Envío
                 </button>
               </div>
             ) : (
@@ -202,6 +202,7 @@ const Calculator = () => {
         </div>
       </div>
     </section>
+
   );
 };
 

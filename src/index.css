@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Colors - Modern Navy and Vivid Orange */
   --primary: #0A192F;
   --primary-light: #112240;
   --accent: #FF5A1F;
@@ -11,19 +10,16 @@
   --text-main: #1E293B;
   --text-muted: #64748B;
   --text-light: #F8FAFC;
-  
-  /* Status Colors */
+
   --success: #10B981;
   --error: #EF4444;
-  
-  /* Shadows & Borders */
+
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-glow: 0 0 15px rgba(255, 90, 31, 0.4);
   --border-color: #E2E8F0;
-  
-  /* Transitions */
+
   --transition-fast: 0.2s ease-in-out;
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -53,8 +49,10 @@ body {
   padding: 0 2rem;
 }
 
-/* Base Typo */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: 700;
   line-height: 1.2;
   color: var(--primary);
@@ -66,7 +64,6 @@ a {
   transition: color var(--transition-fast);
 }
 
-/* Utilities */
 .section-header {
   text-align: center;
   margin-bottom: 3.5rem;
@@ -98,7 +95,6 @@ a {
   margin: 0 auto;
 }
 
-/* Components: Buttons */
 .btn-primary {
   background-color: var(--accent);
   color: white;
@@ -149,7 +145,6 @@ a {
   transform: translateY(-4px);
 }
 
-/* Form inputs Global */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -187,10 +182,16 @@ textarea:focus {
   display: block;
 }
 
-/* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .fade-in {

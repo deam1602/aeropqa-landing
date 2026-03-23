@@ -5,16 +5,15 @@
   background: var(--white);
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .shippingForm {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
 
-/* Responsividad para celulares */
 @media (max-width: 768px) {
   .shippingForm {
     grid-template-columns: 1fr;

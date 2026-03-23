@@ -88,7 +88,7 @@
 
 .step-connector {
   position: absolute;
-  top: 98px; /* Adjusted based on number and icon height */
+  top: 98px;
   right: -50%;
   width: 100%;
   height: 2px;
@@ -98,7 +98,6 @@
   opacity: 0.3;
 }
 
-/* For mobile responsiveness */
 @media (max-width: 900px) {
   .steps-container {
     flex-direction: column;

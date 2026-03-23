@@ -14,13 +14,13 @@ const ContactForm = () => {
   const validate = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[0-9]{8,15}$/; 
-    
+    const phoneRegex = /^[0-9]{8,15}$/;
+
     if (!formData.nombre.trim()) newErrors.nombre = "El nombre es requerido";
     if (!emailRegex.test(formData.correo)) newErrors.correo = "Correo inválido";
     if (!phoneRegex.test(formData.telefono)) newErrors.telefono = "Teléfono debe ser numérico (8-15 dígitos)";
     if (!formData.mensaje.trim()) newErrors.mensaje = "El mensaje es requerido";
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -30,14 +30,13 @@ const ContactForm = () => {
     if (!validate()) return;
 
     setStatus('enviando');
-    
-    // Obteniendo la URL desde las variables de entorno de Vite
+
     const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SHEETS_URL;
 
     try {
       await fetch(SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', 
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
@@ -54,37 +53,37 @@ const ContactForm = () => {
       <h3>Contáctanos</h3>
       <form onSubmit={handleSubmit} noValidate>
         <div className="input-group">
-          <input type="text" placeholder="Nombre completo" 
+          <input type="text" placeholder="Nombre completo"
             className={errors.nombre ? 'error-input' : ''}
-            value={formData.nombre} onChange={e => {setFormData({...formData, nombre: e.target.value}); if(errors.nombre) setErrors({...errors, nombre: ''})}} />
+            value={formData.nombre} onChange={e => { setFormData({ ...formData, nombre: e.target.value }); if (errors.nombre) setErrors({ ...errors, nombre: '' }) }} />
           {errors.nombre && <span className="error-text">{errors.nombre}</span>}
         </div>
-        
+
         <div className="input-group">
-          <input type="email" placeholder="Correo electrónico" 
+          <input type="email" placeholder="Correo electrónico"
             className={errors.correo ? 'error-input' : ''}
-            value={formData.correo} onChange={e => {setFormData({...formData, correo: e.target.value}); if(errors.correo) setErrors({...errors, correo: ''})}} />
+            value={formData.correo} onChange={e => { setFormData({ ...formData, correo: e.target.value }); if (errors.correo) setErrors({ ...errors, correo: '' }) }} />
           {errors.correo && <span className="error-text">{errors.correo}</span>}
         </div>
-        
+
         <div className="input-group">
-          <input type="tel" placeholder="Teléfono" 
+          <input type="tel" placeholder="Teléfono"
             className={errors.telefono ? 'error-input' : ''}
-            value={formData.telefono} onChange={e => {setFormData({...formData, telefono: e.target.value}); if(errors.telefono) setErrors({...errors, telefono: ''})}} />
+            value={formData.telefono} onChange={e => { setFormData({ ...formData, telefono: e.target.value }); if (errors.telefono) setErrors({ ...errors, telefono: '' }) }} />
           {errors.telefono && <span className="error-text">{errors.telefono}</span>}
         </div>
-        
+
         <div className="input-group">
-          <textarea placeholder="Mensaje" 
+          <textarea placeholder="Mensaje"
             className={errors.mensaje ? 'error-input' : ''}
-            value={formData.mensaje} onChange={e => {setFormData({...formData, mensaje: e.target.value}); if(errors.mensaje) setErrors({...errors, mensaje: ''})}} />
+            value={formData.mensaje} onChange={e => { setFormData({ ...formData, mensaje: e.target.value }); if (errors.mensaje) setErrors({ ...errors, mensaje: '' }) }} />
           {errors.mensaje && <span className="error-text">{errors.mensaje}</span>}
         </div>
-        
+
         <button type="submit" disabled={status === 'enviando'}>
           {status === 'enviando' ? 'Enviando...' : 'Enviar Mensaje'}
         </button>
-        
+
         {status === 'exito' && <p className="success-msg">¡Datos enviados correctamente!</p>}
         {status === 'error' && <p className="error-msg">Hubo un error al enviar el mensaje. Inténtalo de nuevo.</p>}
       </form>
